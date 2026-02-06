@@ -7,9 +7,11 @@ class StaticExam02 {
 	}
 	
 	public void plus2AndPrintK() {
+		this.printK();
 		k += 2;
 		System.out.println(k);
 	}
+	
 }
 
 public class StaticExam01 {
