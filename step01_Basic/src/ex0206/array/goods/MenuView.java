@@ -19,7 +19,7 @@ public class MenuView{
 
 	  while(true){
          System.out.println("---------------------------------------------------------------------------");
-		 System.out.println("1.등록     2.전체검색      3.상품코드검색    4. 수정하기     9.종료");
+		 System.out.println("1.등록     2.전체검색      3.상품코드검색    4. 수정하기   5. 삭제하기   9.종료");
 		 System.out.println("----------------------------------------------------------------------------");
 
          System.out.print("메뉴 선택 > ");
@@ -36,8 +36,10 @@ public class MenuView{
 				 this.inputSelectByCode(); break;
 			 case 4 : 
 				 this.inputUpdate() ; break;
+			 case 5 :
+				 this.inputDelete() ; break;
 			 case 9 : 
-				 System.out.println("다음에 또 이용해ㅜㅈ세요. 프로그램 종료합니다.");
+				 System.out.println("다음에 또 이용해주세요. 프로그램 종료합니다.");
 				 System.exit(0); 
 			 break;
 			 default: System.out.println("메뉴는 1~4 or 9 만 입력해주세요.");
@@ -67,9 +69,14 @@ public class MenuView{
 
 
 	 //생성자를 추가하여 값을 전달하자(데이터 초기화)
-      // Goods goods = new Goods();
+       Goods goods = new Goods();
+       goods.setCode(code);
+       goods.setExplain(explain);
+       goods.setName(name);
+       goods.setPrice(price);
+       
 
-	   int result = service.insert(null);
+	   int result = service.insert(goods);
 
 	   if(result==-1)
 		  EndView.printMessage("더이상 등록할 수 없습니다.");
@@ -109,9 +116,13 @@ public class MenuView{
 	   String explain = sc.nextLine();
 
 	   //위 3개의 정보를 하나의 Goods객체로 만든다.
+	   Goods g = new Goods();
+	   g.setCode(code);
+	   g.setExplain(explain);
+	   g.setPrice(price);
 	   
 
-	   if(service.update(null) ){
+	   if(service.update(g) ){
           EndView.printMessage("상품이 수정되었습니다.");
 	   }else{
           EndView.printMessage("상품이 수정되지않았습니다.");
@@ -119,6 +130,20 @@ public class MenuView{
 
 
   }//메소드끝
+  
+  /**
+   * 삭제하기 키보드 입력
+   */
+  public void inputDelete() {
+	  System.out.print("삭제할 상품코드 > ");
+	  String code = sc.nextLine();
+	  
+	  if(service.delete(code)) {
+		  EndView.printMessage("상품이 제거되었습니다.");
+	  } else {
+		  EndView.printMessage("상품이 제거되지 않았습니다.");
+	  }
+  }
 
 
 

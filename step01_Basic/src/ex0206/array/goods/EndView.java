@@ -14,15 +14,18 @@ public class EndView{
      전체검색 결과를 출력하는 메소드
    */
    public static void printSelectAll(Goods [] arr){//service에 있는 주소가 전달되었다.
-	  
-
+	  System.out.println("-- 전체 검색 결과 메서드 호출 --");
+	   for(int i=0;i<GoodsService.count;i++) {
+		  System.out.println(arr[i].getCode() + " " + arr[i].getName() + " " + arr[i].getPrice() + " " + arr[i].getExplain());
+	  }
    }
 
    /**
      상품코드에 해당하는 상세정보 출력하는 메소드 
    */
    public static void printSelectByCode(Goods goods){
-  
+	   System.out.println("-- 특정 검색 결과 메서드 호출 --");
+	   System.out.println(goods.getCode() + " " + goods.getName() + " " + goods.getPrice() + " " + goods.getExplain());
    }
 
 
