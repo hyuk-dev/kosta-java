@@ -23,6 +23,12 @@ class Calculator {
 }
 
 public class ArrayQuestion9 {
+	
+	public boolean checkLen(int len) {
+		if(len < 0) {
+			return false;
+		} return true;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -35,6 +41,7 @@ public class ArrayQuestion9 {
 			System.out.print("선택>");
 			int selected = sc.nextInt();
 			int len = score.length;
+
 			switch(selected) {
 				case 1 -> {
 					System.out.print("학생 수>");
@@ -53,17 +60,24 @@ public class ArrayQuestion9 {
 					}
 				}
 				case 3 -> {
+					if(len == 0) {
+						System.out.println("먼저 학생수를 입력해야합니다.");
+					}
 					for(int i=0; i<len; i++) {
 						System.out.println("score["+i+"]: " + score[i]);
 					}
 				}
 				case 4 -> {
-					Calculator cal = new Calculator();
-					int sum = cal.getSum(score);
-					double avg = cal.getAverage(sum, len);
-					int max = cal.getMax(score);
-					System.out.println("최고 점수: " + max);
-					System.out.println("평균 점수: " + avg);
+					if(len == 0) {
+						System.out.println("먼저 학생수를 입력해야합니다.");
+					} else {
+						Calculator cal = new Calculator();
+						int sum = cal.getSum(score);
+						double avg = cal.getAverage(sum, len);
+						int max = cal.getMax(score);
+						System.out.println("최고 점수: " + max);
+						System.out.println("평균 점수: " + avg);
+					}
 				}
 				case 5 -> {
 					System.out.println("프로그램 종료");

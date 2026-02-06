@@ -14,6 +14,11 @@ class LottoTech {
 		}
 	
 		// 숫자 6개를 배열방에 저장하는 메서드 : lotto[index] = 값
+		
+		/**
+		 * 전체를 중복체크하지 않고 이미 만들어진 값들만가지고 중복체크?
+		 * 
+		 */
 		public int[] getRandom() {
 			int[] numbers = new int [6];
 			for(int i=0; i<numbers.length; i++) {
