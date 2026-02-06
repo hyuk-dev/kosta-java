@@ -1,5 +1,8 @@
 package assignment0205.array;
-
+/**
+ * 작성일: 20260205
+ * 
+ */
 public class ArrayQuestion8 {
 
 	public static void main(String[] args) {
