@@ -1,4 +1,4 @@
-package ex2025.staticex;
+package ex0205.staticex;
 
 class Test {
 	int a; // 전역 변수 0 - 인스턴스 필드

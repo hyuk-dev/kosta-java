@@ -1,4 +1,4 @@
-package ex2026.array.student;
+package ex0206.array.student;
 
 public class StudentTest {
 	public static void main(String[] args) {
@@ -37,29 +37,42 @@ public class StudentTest {
 		System.out.println("--2. 전체검색 ----");
 		StudentEndView.printSelectedAll(stArr);
 		
-		//service.insert(student);
-		
-		//System.out.println("--2. 전체검색 -----");
-		//service.selectAll();
 		
 		//이름으로 검색하기
-		//System.out.println("--3. 이름으로 검색 -----");
-		//service.selectByName("희정");
+		System.out.println("--3. 이름으로 검색 -----");
+		Student existedStudent = service.selectByName("가혁");
+		if(existedStudent == null) {
+			StudentEndView.printMessage("검색 결과가 없습니다.");
+			
+		} else {
+			StudentEndView.printSelectByName(existedStudent);
+		}
 		
-		//System.out.println("--이름이 없는경우----");
-		//service.selectByName("삼순이");
+		System.out.println("--이름이 없는경우----");
+		existedStudent = service.selectByName("삼순이");
+		if(existedStudent == null) {
+			StudentEndView.printMessage("검색 결과가 없습니다.");
+			
+		} else {
+			StudentEndView.printSelectByName(existedStudent);
+		}
 		
 		//수정하기 
-		/*System.out.println("--4. 수정하기 -----");
+		System.out.println("--4. 수정하기 -----");
 		Student st2 =new Student();
 		st2.setName("나영");//조건
 		st2.setAge(23);
 		st2.setAddr("대전");
 		
-		service.update(st2);
+		if(service.update(st2)) {
+			StudentEndView.printMessage("업데이트 완료!");
+		} else {
+			StudentEndView.printMessage("업데이트 실패!");
+		}
+		
 		
 		System.out.println("---변경후 ---");
-		service.selectAll();*/
+		service.selectAll();
 
 	}
 

@@ -1,4 +1,4 @@
-package ex2026.array.student;
+package ex0206.array.student;
 
 /**
  * 학생의 정보를 관리 하는 서비스(등록, 수정, 검색,....)
@@ -6,7 +6,7 @@ package ex2026.array.student;
 public class StudentService {
 	
 	// 학생의  정보를 저장할 배열 선언
-	Student stArr[] = new Student[5]; // 최대 10명
+	Student stArr[] = new Student[6]; // 최대 10명
 	static int count; // 배열에 저장된 객체의 개수를 체크하는 필드
 	
 	/**
@@ -96,8 +96,20 @@ public class StudentService {
 	 *   있으면  setAge() , setAddr() 이용해서 전달된 인수의 값으로 변경하고
 	 *   "수정되었습니다" 출력
 	 *   @param : Student
-	 *   @return : void
+	 *   @return : boolean
 	 * */
+	 
+	 public boolean update(Student student) {
+		 Student existedStudent = this.selectByName(student.getName());
+		 if(existedStudent != null) {
+			 existedStudent.setAge(student.getAge());
+			 existedStudent.setAddr(student.getAddr());
+			 return true;
+		 } else {
+			 return false;
+		 }
+		 
+	 }
 	 
 
 }

@@ -1,4 +1,4 @@
-package ex2026.array.student;
+package ex0206.array.student;
 
 /**
  * 학생의 속성을 관리하는 객체

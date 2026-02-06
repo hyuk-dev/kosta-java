@@ -1,4 +1,4 @@
-package ex2026.array.student;
+package ex0206.array.student;
 
 /**
  * 사용자의 요청의 결과를 모니터에 출력하는 클래스
@@ -14,6 +14,7 @@ public class StudentEndView {
 			System.out.printf("이름: %s | ", stArr[i].getName());
 			System.out.printf("나이: %d | ", stArr[i].getAge());
 			System.out.printf("주소: %s%n", stArr[i].getAddr());
+			
 		}
 	}
 	
