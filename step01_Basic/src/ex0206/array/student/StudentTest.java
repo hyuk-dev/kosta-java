@@ -60,7 +60,7 @@ public class StudentTest {
 		//수정하기 
 		System.out.println("--4. 수정하기 -----");
 		Student st2 =new Student();
-		st2.setName("나영");//조건
+		st2.setName("가혁");//조건
 		st2.setAge(23);
 		st2.setAddr("대전");
 		
@@ -72,7 +72,7 @@ public class StudentTest {
 		
 		
 		System.out.println("---변경후 ---");
-		service.selectAll();
+		StudentEndView.printSelectedAll(stArr);
 
 	}
 

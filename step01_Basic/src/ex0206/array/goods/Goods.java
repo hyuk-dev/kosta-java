@@ -8,14 +8,36 @@ public class Goods{
 	private int price;//가격 0 
 	private String explain;//설명 null
 	
-	public Goods(String code, String name, int price, String explain) {
-		super();
+	public String getCode() {
+		return this.code;
+	}
+	
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public int getPrice() {
+		return this.price;
+	}
+	
+	public String getExplain() {
+		return this.explain;
+	}
+	
+	public void setCode(String code) {
 		this.code = code;
+	}
+	
+	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public void setExplain(String explain) {
 		this.explain = explain;
 	}
-
-	
-
 }

@@ -23,7 +23,9 @@ public class GoodsService{
 		};
    */
    public void init(String [][] data){
-	  
+	 for(int i=0; i<data.length; i++) {
+		 this.goodsArr[count++] = create(data[i]);
+	 }
 	   
 
    }//메소드끝
@@ -33,9 +35,12 @@ public class GoodsService{
       Goods를 생성해서 값을 설정하고 생성된 Goos를 리턴하는 메소드 
    */
    private Goods create(String [] row){//{"A01" , "새우깡" , "2500" , "짜고 맛나다."}
-         
-
-		 return null;
+         Goods g = new Goods();    
+         g.setCode(row[0]);
+         g.setExplain(row[3]);
+         g.setName(row[1]);
+         g.setPrice(Integer.parseInt(row[2]));
+         return g;
    }
 
 
@@ -52,13 +57,19 @@ public class GoodsService{
    public int insert(Goods goods){
 
 	   // 배열의 길이 체크
+	   if(count >= goodsArr.length) {
+		   return -1;
+	   }
+
+	   //중복체크 - selectByCode 활용
+	   if(selectByCode(goods.getCode()) != null) {
+		   return 0;
+	   }
 	   
-
-	   //중복체크 
-	 
-
-	  
-      return 0;
+	   
+	   //등록
+	   goodsArr[count++] = goods;
+	   return 1;
    }
 
 
@@ -67,7 +78,7 @@ public class GoodsService{
    */
    public Goods[]  selectAll( ){
      
-      return null;//
+      return goodsArr;//
    }
 
    /**
@@ -76,7 +87,12 @@ public class GoodsService{
 	           없으면 null 리턴
    */
    public Goods selectByCode(String code){
-       
+       for(int i=0; i<count; i++) {
+    	   if(goodsArr[i].getCode().equals(code)) {
+    		   
+    		   return goodsArr[i];
+    	   }
+       }
        
        return null;
    }
@@ -87,7 +103,43 @@ public class GoodsService{
 	@return : true이면 수정완료, false이면 수정실패
    */
    public boolean update(Goods goods){ //수정하려는 코드, 변경값 - 가격, 설명
-      
+      Goods existedGoods = selectByCode(goods.getCode());
+	   if(existedGoods != null) {
+    	  // 수정 로직
+    	  existedGoods.setPrice(goods.getPrice());
+    	  existedGoods.setExplain(goods.getExplain());
+    	  return true;
+      }
        return false;
+   }
+   
+   /**
+    * 상품코드에 해당하는 상품 삭제하기
+    * @return : true 이면 삭제완료, false 이면 삭제 실패
+    */
+   public boolean delete(String code) {
+	   System.out.println("-- 삭제 메서드 호출 -- ");
+	   Goods existedGoods = selectByCode(code);
+	   int index = 0;
+	   if(existedGoods != null) {
+
+		   // 해당하는 배열 요소 찾아서 제거 (null로)
+		   for(int i=0; i<count; i++) {
+			   if(goodsArr[i].getCode().equals(existedGoods.getCode())) {
+				   index = i;
+			   }
+		   }
+		   goodsArr[index] = null;
+
+		   // 이후에 있는 배열 요소들을 한칸씩 앞으로 이동하기.
+		   for(int i=index;i<count-1;i++) {
+			   goodsArr[i] = goodsArr[i+1];
+		   }
+		   
+		   // count 1 빼주기
+		   count--;
+		   return true;
+	   }
+	   return false;
    }
 }
