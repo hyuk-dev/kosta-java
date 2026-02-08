@@ -125,7 +125,7 @@ public class GoodsService{
 
 		   // 해당하는 배열 요소 찾아서 제거 (null로)
 		   for(int i=0; i<count; i++) {
-			   if(goodsArr[i].getCode() == existedGoods.getCode()) {
+			   if(goodsArr[i].getCode().equals(existedGoods.getCode())) {
 				   index = i;
 			   }
 		   }
