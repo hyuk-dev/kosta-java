@@ -42,7 +42,7 @@ public class MenuView{
 				 System.out.println("다음에 또 이용해주세요. 프로그램 종료합니다.");
 				 System.exit(0); 
 			 break;
-			 default: System.out.println("메뉴는 1~4 or 9 만 입력해주세요.");
+			 default: System.out.println("메뉴는 1~5 or 9 만 입력해주세요.");
 
 		 }//switch문
 

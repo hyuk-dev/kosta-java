@@ -65,7 +65,7 @@ public class StudentTest {
 		st2.setAddr("대전");
 		
 		if(service.update(st2)) {
-			StudentEndView.printMessage("업데이트 완료!");
+			StudentEndView.printMessage(st2.getName() + "님의 정보를 업데이트 완료!");
 		} else {
 			StudentEndView.printMessage("업데이트 실패!");
 		}

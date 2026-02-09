@@ -24,7 +24,7 @@ public class GoodsService{
    */
    public void init(String [][] data){
 	 for(int i=0; i<data.length; i++) {
-		 this.goodsArr[count++] = create(data[i]);
+		 goodsArr[count++] = create(data[i]);
 	 }
 	   
 
@@ -87,8 +87,9 @@ public class GoodsService{
 	           없으면 null 리턴
    */
    public Goods selectByCode(String code){
+	   String upperCode = code.toUpperCase();
        for(int i=0; i<count; i++) {
-    	   if(goodsArr[i].getCode().equals(code)) {
+    	   if(goodsArr[i].getCode().equals(upperCode)) {
     		   
     		   return goodsArr[i];
     	   }
@@ -119,27 +120,30 @@ public class GoodsService{
     */
    public boolean delete(String code) {
 	   System.out.println("-- 삭제 메서드 호출 -- ");
-	   Goods existedGoods = selectByCode(code);
-	   int index = 0;
-	   if(existedGoods != null) {
+	   int index = this.findLocate(code);
+	   if(index == -1) return false;
+	   
+	   goodsArr[index] = null;
 
-		   // 해당하는 배열 요소 찾아서 제거 (null로)
-		   for(int i=0; i<count; i++) {
-			   if(goodsArr[i].getCode().equals(existedGoods.getCode())) {
-				   index = i;
-			   }
-		   }
-		   goodsArr[index] = null;
-
-		   // 이후에 있는 배열 요소들을 한칸씩 앞으로 이동하기.
-		   for(int i=index;i<count-1;i++) {
-			   goodsArr[i] = goodsArr[i+1];
-		   }
-		   
-		   // count 1 빼주기
-		   count--;
-		   return true;
+	   // 이후에 있는 배열 요소들을 한칸씩 앞으로 이동하기.
+	   for(int i=index;i<count-1;i++) {
+		   goodsArr[i] = goodsArr[i+1];
 	   }
-	   return false;
+	   goodsArr[--count] = null;
+	   return true;
+
+   }
+   
+   private int findLocate(String code) {
+	   Goods existedGoods = selectByCode(code);
+	   if(existedGoods == null) return -1;
+	   int index = 0;
+	   // 해당하는 배열 요소 찾아서 제거 (null로)
+	   for(int i=0; i<count; i++) {
+		   if(goodsArr[i].getCode().equals(existedGoods.getCode())) {
+			   index = i;
+		   }
+	   }
+	   return index;
    }
 }
